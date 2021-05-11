@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">NerdLauncher</string>
+    <string name="nerd_launcher">NERD LAUNCHER</string>
+    <string name="setting">Settings</string>
+    <string name="exit">Exit</string>
+    <string name="toggle_theme">Toggle Theme</string>
+</resources>
