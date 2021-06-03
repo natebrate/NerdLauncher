@@ -2,7 +2,9 @@ package com.bignerdranch.android.nerdlauncher
 
 import android.content.Intent
 import android.content.pm.ResolveInfo
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -13,8 +15,10 @@ import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
+    lateinit var mp: MediaPlayer
     private lateinit var resolvedApplist: List<ResolveInfo>
     lateinit var mainBinding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -55,6 +59,14 @@ class MainActivity : AppCompatActivity() {
             ))
         }
     }
+
+    fun playSound() {
+        mp = MediaPlayer.create(applicationContext, R.raw.chime)
+        mp.start()
+        val handler = Handler()
+        handler.postDelayed({ mp.stop() }, (5 * 1000).toLong())
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater

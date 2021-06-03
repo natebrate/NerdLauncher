@@ -1,6 +1,9 @@
 package com.bignerdranch.android.nerdlauncher
 
 import android.content.Context
+import android.content.Intent
+import android.media.MediaPlayer
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,14 +13,13 @@ class Adapter(
         private val context:Context
 ) : RecyclerView.Adapter<Adapter.AppItemViewHolder>() {
 
+
     lateinit var appBinding: ItemAppBinding
     var appList: List<AppBlock>?= null
 
     inner class AppItemViewHolder(
             val appBinding: ItemAppBinding
     ): RecyclerView.ViewHolder(appBinding.root)
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -33,6 +35,7 @@ class Adapter(
         holder.appBinding.appIcon.setImageDrawable(appList?.get(position)?.icon)
         holder.appBinding.appName.text = appList?.get(position)?.appName
         holder.appBinding.root.setOnClickListener {
+//            MainActivity().playSound()
             context.startActivity(
                     context.packageManager.getLaunchIntentForPackage(appList?.get(position)?.packageName?:"com.bignerdranch.android.nerdlauncher")
             )
